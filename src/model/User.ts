@@ -1,13 +1,12 @@
 import List from "./List";
 import Video from "./Video";
 import Channel from "./Channel";
+import Model from "./Model";
 
-export default interface User {
-    id: number,
+export default interface User extends Model{
     name: string,
     email: string,
     password: string,
-    createdAt: Date,
     token: string,
     lists: List[],
     videos: Video[],
