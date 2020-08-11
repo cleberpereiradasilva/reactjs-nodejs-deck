@@ -13,6 +13,9 @@ Breefing
 - Usuario pode arrastar vídeos para sua lista de reprotução
 
 
+Para os canais, youtube, vimeo, twith.tv
+
+
 
 
 
