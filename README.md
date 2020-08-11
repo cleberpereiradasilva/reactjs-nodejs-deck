@@ -1,8 +1,14 @@
 # reactjs-nodejs-deck
 A system to create youtube videos deck
 
+# Instalar
+``` 
+$ npm install
+``` 
 
-Breefing
+# Breefing
+
+Para os canais, youtube, vimeo, twith.tv
 
 - Usuario se cadastra
 - Usuario reseta senha por email e token
@@ -13,7 +19,15 @@ Breefing
 - Usuario pode arrastar vídeos para sua lista de reprotução
 
 
-Para os canais, youtube, vimeo, twith.tv
+# Rodar
+
+Por enquanto estou trabalhando no youtube connector
+
+```
+$ npm run dev:y
+
+```
+
 
 
 
