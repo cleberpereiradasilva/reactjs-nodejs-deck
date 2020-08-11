@@ -23,20 +23,20 @@ const _tabsConvertToGridRenderer = tabs => tabs.filter(tab => tab.tabRenderer &&
             .gridRenderer
             .items;
 
+const getVideo = gridVideoRenderer => ({
+          "videoId" : gridVideoRenderer.videoId,
+          "thumbnail" : gridVideoRenderer.thumbnail.thumbnails,
+          "title" : gridVideoRenderer.title.simpleText,
+          "publishedTimeText" : gridVideoRenderer.publishedTimeText.simpleText,
+          "viewCountText" : gridVideoRenderer.viewCountText.simpleText
+      });
 
 
 const getData = async channel => {
   const tabs = await _getChannelJson(channel);
   const items = await _tabsConvertToGridRenderer(tabs);
   return await items.reduce( (acc, { gridVideoRenderer }) => {
-      const video =  {
-          "videoId" : gridVideoRenderer.videoId,
-          "thumbnail" : gridVideoRenderer.thumbnail.thumbnails,
-          "title" : gridVideoRenderer.title.simpleText,
-          "publishedTimeText" : gridVideoRenderer.publishedTimeText.simpleText,
-          "viewCountText" : gridVideoRenderer.viewCountText.simpleText
-      }
-      return acc.concat([video])
+      return acc.concat([getVideo(gridVideoRenderer)])
    },[])
 
 }
