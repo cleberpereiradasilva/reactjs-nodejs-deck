@@ -1,8 +1,6 @@
 const fetch = require("node-fetch");
 
-
-
-const getChannelJson = async channel => {
+const _getChannelJson = async channel => {
  const url = `https://www.youtube.com/c/${channel}/videos`
   try {
         const response = await fetch(url);
@@ -15,8 +13,7 @@ const getChannelJson = async channel => {
   }
 };
 
-
-const tabsConvertToGridRenderer = tabs => tabs.filter(tab => tab.tabRenderer && tab.tabRenderer.content)[0]
+const _tabsConvertToGridRenderer = tabs => tabs.filter(tab => tab.tabRenderer && tab.tabRenderer.content)[0]
             .tabRenderer
             .content
             .sectionListRenderer
@@ -29,18 +26,19 @@ const tabsConvertToGridRenderer = tabs => tabs.filter(tab => tab.tabRenderer && 
 
 
 const getData = async channel => {
-  const tabs = await getChannelJson(channel);
-  const items = await tabsConvertToGridRenderer(tabs);
-  return items.reduce( (acc, { gridVideoRenderer }) => {
-      return {
+  const tabs = await _getChannelJson(channel);
+  const items = await _tabsConvertToGridRenderer(tabs);
+  return await items.reduce( (acc, { gridVideoRenderer }) => {
+      const video =  {
           "videoId" : gridVideoRenderer.videoId,
           "thumbnail" : gridVideoRenderer.thumbnail.thumbnails,
           "title" : gridVideoRenderer.title.simpleText,
           "publishedTimeText" : gridVideoRenderer.publishedTimeText.simpleText,
           "viewCountText" : gridVideoRenderer.viewCountText.simpleText
       }
+      return acc.concat([video])
    },[])
 
 }
 
-console.log(getData("spacex"));
+getData("spacex").then(data => console.log(data));
