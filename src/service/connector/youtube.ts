@@ -41,4 +41,4 @@ const getData = async channel => {
 
 }
 
-getData("spacex").then(data => console.log(data));
+
