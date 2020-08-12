@@ -10,13 +10,13 @@ $ npm install
 
 Para os canais, youtube, vimeo, twith.tv
 
-- Usuario se cadastra
-- Usuario reseta senha por email e token
+- Usuário se cadastra
+- Usuário reseta senha por email e token
 - Usuário escolhe canais
-- Usuario ve os vídeos dos canais em linhas(carrossel)
-- Usuario adciona videos que não são de acanais
-- Usuario Cria suas listas de reprodução
-- Usuario pode arrastar vídeos para sua lista de reprotução
+- Usuário ve os vídeos dos canais em linhas(carrossel)
+- Usuário adciona videos que não são de canais
+- Usuário cria suas listas de reprodução
+- Usuário pode arrastar vídeos para sua lista de reprodução
 
 
 # Rodar
