@@ -9,10 +9,6 @@ const index = ({data}) => (
 
 
 export async function getStaticProps() {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  // By returning { props: posts }, the Blog component
-  // will receive `posts` as a prop at build time
   const response = await fetch('http://localhost:3000/api/youtube/channel/spacex');
   const data = await response.json();
 

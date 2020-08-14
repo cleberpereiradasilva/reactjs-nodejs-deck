@@ -1,16 +1,10 @@
 const List = ({data}) => {
- const { avatar_url } = data
  console.log(data)
+ const getList = list => list.map(item => <li>{item.videoId}</li>)
+
  return(
     <div>
-        <ol>
-            <li> {avatar_url }</li>
-            <li> item 1</li>
-            <li> item 1</li>
-            <li> item 1</li>
-            <li> item 1</li>
-            <li> item 1</li>
-            <li> item 1</li>
+        <ol> {getList(data) } 
         </ol>
 
     </div>

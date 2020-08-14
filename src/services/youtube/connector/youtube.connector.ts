@@ -1,4 +1,3 @@
-const fetch = require("node-fetch");
 
 const _getChannelJson = async channel => {
  const url = `https://www.youtube.com/c/${channel}/videos`
