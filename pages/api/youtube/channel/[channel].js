@@ -1,5 +1,4 @@
-
-import { GetDataChannel } from "../../../../src/services/youtube/connector"
+import { GetDataChannel } from '../../../../src/services/youtube/facade'
 
 export default async (req, res) => {
   const {
