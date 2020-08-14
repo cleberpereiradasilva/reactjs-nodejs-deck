@@ -24,9 +24,11 @@ Para os canais, youtube, vimeo, twith.tv
 Por enquanto estou trabalhando no youtube connector
 
 ```
-$ npm run dev:y
+$ npm run dev
 
 ```
+
+Open `http://localhost:3000`
 
 
 
