@@ -35,6 +35,8 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+.next/
+
 
 # Distribution directories
 dist/
@@ -44,7 +46,6 @@ typings/
 
 # Optional npm cache directory
 .npm
-.next
 # Optional eslint cache
 .eslintcache
 

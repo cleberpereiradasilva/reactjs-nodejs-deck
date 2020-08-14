@@ -13,7 +13,7 @@ const _getChannelJson = async channel => {
   }
 };
 
-const _tabsConvertToGridRenderer = tabs => tabs.filter(tab => tab.tabRenderer && tab.tabRenderer.content)[0]
+const _tabsConvertToGridRenderer = tabs => tabs && tabs.filter(tab => tab.tabRenderer && tab.tabRenderer.content)[0]
             .tabRenderer
             .content
             .sectionListRenderer
@@ -32,13 +32,15 @@ const getVideo = gridVideoRenderer => ({
       });
 
 
-const getData = async channel => {
+const GetDataChannel = async channel => {
   const tabs = await _getChannelJson(channel);
   const items = await _tabsConvertToGridRenderer(tabs);
-  return await items.reduce( (acc, { gridVideoRenderer }) => {
+  return items.reduce( (acc, { gridVideoRenderer }) => {
       return acc.concat([getVideo(gridVideoRenderer)])
    },[])
 
 }
+
+export { GetDataChannel };
 
 
