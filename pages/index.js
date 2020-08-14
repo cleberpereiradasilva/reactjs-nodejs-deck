@@ -1,29 +1,25 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import Video from '../src/components/Video'
+import List from "../src/component/Youtube"
 
-export default function Home() {    
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App...</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+const index = ({data}) => (
+        <div>
+            <h1>Lista</h1>
+            <List data={data} />
+        </div>
+)
 
-      <main className={styles.main}>
 
-      </main>
-        <Video content='foi'/>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+export async function getStaticProps() {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  // By returning { props: posts }, the Blog component
+  // will receive `posts` as a prop at build time
+  const response = await fetch('http://localhost:3000/api/youtube/channel/spacex');
+  const data = await response.json();
+
+  return {
+    props: {
+        data,
+    },
+  }
 }
+export default index;
