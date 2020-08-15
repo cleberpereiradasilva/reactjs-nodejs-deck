@@ -1,8 +1,11 @@
 
-const url = (channel: string) => `https://www.youtube.com/c/${channel}/videos`
+const urlChannel = (channel: string) => `https://www.youtube.com/c/${channel}/videos`
+const urlVideo = (videoId: string) => `https://www.youtube.com/watch?v=${videoId}`
+
 const GetChannelJson = async (channel : string) => {
   try {
-        const response = await fetch(url(channel));
+        const url = urlChannel(channel);
+        const response = await fetch(url);
         const content = await response.text()
         const preJson = content.split("window[\"ytInitialData\"] = ")[1].split(";")[0]
         const json = JSON.parse(preJson);        
@@ -12,7 +15,20 @@ const GetChannelJson = async (channel : string) => {
   }
 };
 
-export { GetChannelJson}
+const GetVideolJson = async (videoId : string) => {
+  try {
+        const url = urlVideo(videoId);
+        const response = await fetch(url);
+        const content = await response.text()
+        const preJson = content.split("window[\"ytInitialData\"] = ")[1].split(";")[0]
+        const json = JSON.parse(preJson);        
+        return json.contents.twoColumnWatchNextResults.results.results.contents[0].videoPrimaryInfoRenderer;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { GetChannelJson, GetVideolJson}
 
 
 
