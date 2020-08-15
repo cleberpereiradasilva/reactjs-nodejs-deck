@@ -2,7 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/api/youtube/video/[videoId]": "pages/api/youtube/video/[videoId].js",
-  "/api/youtube/channel/[channel]": "pages/api/youtube/channel/[channel].js"
+  "/": "pages/index.js"
 }

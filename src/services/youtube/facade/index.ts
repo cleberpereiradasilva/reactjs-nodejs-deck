@@ -1,3 +1,3 @@
-import { GetDataChannel, GetVideolJson } from './youtube.facade';
+import { GetDataChannel, GetVideo } from './youtube.facade';
 
-export { GetDataChannel, GetVideolJson }
+export { GetDataChannel, GetVideo }

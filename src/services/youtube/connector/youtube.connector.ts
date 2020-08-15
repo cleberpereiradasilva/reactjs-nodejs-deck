@@ -15,7 +15,7 @@ const GetChannelJson = async (channel : string) => {
   }
 };
 
-const GetVideolJson = async (videoId : string) => {
+const GetVideoJson = async (videoId : string) => {
   try {
         const url = urlVideo(videoId);
         const response = await fetch(url);
@@ -28,7 +28,7 @@ const GetVideolJson = async (videoId : string) => {
   }
 };
 
-export { GetChannelJson, GetVideolJson}
+export { GetChannelJson, GetVideoJson}
 
 
 

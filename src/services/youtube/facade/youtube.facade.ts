@@ -1,6 +1,8 @@
-import {GetChannelJson, GetVideolJson} from "../connector/youtube.connector";
+import {GetChannelJson, GetVideoJson} from "../connector/youtube.connector";
 
-const _tabsConvertToGridRenderer = tabs => tabs && tabs.filter(tab => tab.tabRenderer && tab.tabRenderer.content)[0]
+const _tabsConvertToGridRenderer = tabs => tabs && tabs.filter(
+            tab => tab.tabRenderer && tab.tabRenderer.content
+            )[0]
             .tabRenderer
             .content
             .sectionListRenderer
@@ -27,4 +29,4 @@ const GetDataChannel = async channel => {
    },[])
 
 }
-export { GetDataChannel, GetVideolJson };
+export { GetDataChannel, GetVideoJson as GetVideo };

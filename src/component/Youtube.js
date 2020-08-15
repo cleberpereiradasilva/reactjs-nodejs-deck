@@ -9,7 +9,6 @@ const List = ({data}) => {
 }
 
 const Video = ({data}) => {
-    console.log(data.title);
     return(
         <div>
             <h1>{data.title.runs[0].text}</h1>
