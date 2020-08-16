@@ -28,7 +28,12 @@ $ npm run dev
 
 ```
 
-Open `http://localhost:3000`
+Open `http://localhost:3000/youtube`
+
+# WIP
+
+
+`http://localhost:3000/api/vimeo/channel/1393395`
 
 
 
