@@ -1,48 +1,41 @@
 import cheerio from 'cheerio'
-import {GetChannelJson, GetVideoJson} from "../connector/vimeo.connector";
+import {GetChannelJson, GetVideoJson, GetStatsJson} from "../connector/";
 
-const _liConverterToJson = body => { 
+const _liConverterToJson = async body => { 
     const $ = cheerio.load(body)
     const items = $('li').toArray();
-    const json = []
+    return await items.map(async item => {
+        const videoId = $(item).attr('id').replace("clip","");
+        const videoBody = await GetVideoJson(videoId);
+        return await getVideo(videoBody);
+    });
 
-    items.map(item => {
-        //TODO usar o GetVideo....
-        json.push({
-            videoId: $(item).attr('id').replace("clip",""),
-            thumbnail : "" ,
-            title : "",
-            publishedTimeText : $(item).find('.meta .time').text().trim(),
-            viewCountText : $(item).find(".meta .plays").text()
-        })
-        console.log($(item).find(".vp-preview .vp-preview-cover").html());
-        console.log('----')
-    })
-
-    return json;
 };
 
-    //list && list.reduce( (acc, item) => {
-    //           acc.concat([
-    //               {url: item.find('#info')}
-    //           ]);
-    //        },[]);
 
-const getVideo = gridVideoRenderer => ({
-          "videoId" : gridVideoRenderer.videoId,
-          "thumbnail" : gridVideoRenderer.thumbnail.thumbnails,
-          "title" : gridVideoRenderer.title.simpleText,
-          "publishedTimeText" : gridVideoRenderer.publishedTimeText.simpleText,
-          "viewCountText" : gridVideoRenderer.viewCountText.simpleText
-      });
+const getVideo = async videoBody => {
+    const initScript = videoBody.split('<script type="application/ld+json">')[1];
+    const data = initScript.split('</script>')[0].trim();
+    const json = JSON.parse(data)[0];
+    const videoId = json.url.split('/').pop();
+    //const stats = await GetStatsJson(videoId);
+    const videoJson = {
+          videoId,
+          "thumbnail" : [json.thumbnailUrl],
+          "title" : json.name,
+          "description" : json.description,
+          "publishedTimeText" : json.uploadDate,
+          "viewCountText" : "",
+    }
+    return videoJson;
+};
 
 
 const GetDataChannel = async channel => {
   const tabs = await GetChannelJson(channel);
   const $ = cheerio.load(tabs)
   const ol = $('#clips');
-  const json = _liConverterToJson(ol.html());
-  //li.find('li').map(item => console.log('xx'));
+  const json = await _liConverterToJson(ol.html());
   return json;
 }
 export { GetDataChannel, GetVideoJson as GetVideo };

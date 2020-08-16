@@ -1,5 +1,8 @@
-import {GetDataChannel } from './vimeo.connector'
+
+import { GetChannelJson, GetVideoJson, GetStatsJson} from './vimeo.connector'
 
 export {
-    GetDataChannel
+        GetChannelJson, 
+        GetVideoJson, 
+        GetStatsJson
 };
