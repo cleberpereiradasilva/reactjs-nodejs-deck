@@ -2,13 +2,14 @@ import cheerio from 'cheerio'
 import {GetChannelJson, GetVideoJson, GetStatsJson} from "../connector/";
 
 const _liConverterToJson = async body => { 
-    const $ = cheerio.load(body)
+    const $ = await cheerio.load(body)
     const items = $('li').toArray();
-    return await items.map(async item => {
+    return Promise.all(await items.map(async item => {
         const videoId = $(item).attr('id').replace("clip","");
         const videoBody = await GetVideoJson(videoId);
         return await getVideo(videoBody);
-    });
+    }));
+
 
 };
 
@@ -18,7 +19,6 @@ const getVideo = async videoBody => {
     const data = initScript.split('</script>')[0].trim();
     const json = JSON.parse(data)[0];
     const videoId = json.url.split('/').pop();
-    //const stats = await GetStatsJson(videoId);
     const videoJson = {
           videoId,
           "thumbnail" : [json.thumbnailUrl],
