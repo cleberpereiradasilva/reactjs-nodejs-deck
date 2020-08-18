@@ -30,10 +30,13 @@ $ npm run dev
 
 Open `http://localhost:3000/youtube`
 
-# WIP
-
+# Url Channel Vimeo
 
 `http://localhost:3000/api/vimeo/channel/1393395`
+
+# Url User Vimeo
+
+`http://localhost:3000/api/vimeo/user/5453409`
 
 
 
