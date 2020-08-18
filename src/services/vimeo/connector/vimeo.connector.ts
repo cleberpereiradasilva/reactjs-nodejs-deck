@@ -7,13 +7,14 @@ const urlStats = (videoId: string) => `${urlBase}/${videoId}?action=load_stat_co
 const GetStatsJson = async (channel : string) => {
   try {
         const url = urlStats(channel);
-        console.log(url);
-        const response = await fetch(url, {
-                                          headers: { 'Content-Type': 'application/json' }
-                                        }
-                                    );
+        const headers = {
+            headers: { 
+                    'Content-Type': 'application/json',
+                    'x-requested-with': 'XMLHttpRequest' 
+            }
+        }
+        const response = await fetch(url, headers);
         const content = await response.text()
-        console.log(content)
         return content; 
   } catch (error) {
     console.log(error);
