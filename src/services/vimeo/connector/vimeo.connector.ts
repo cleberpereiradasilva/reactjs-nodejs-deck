@@ -2,48 +2,47 @@
 const urlBase = "https://vimeo.com"
 const urlChannel = (channel: string) => `${urlBase}/channels/${channel}`
 const urlVideo = (videoId: string) => `${urlBase}/${videoId}`
+const urlUser = (userId: string) => `${urlBase}/user${userId}`
 const urlStats = (videoId: string) => `${urlBase}/${videoId}?action=load_stat_counts`
 
-const GetStatsJson = async (channel : string) => {
+
+const _getFromUrl = async (url:string, headers = {}) => {
   try {
-        const url = urlStats(channel);
-        const headers = {
-            headers: { 
-                    'Content-Type': 'application/json',
-                    'x-requested-with': 'XMLHttpRequest' 
-            }
-        }
-        const response = await fetch(url, headers);
-        const content = await response.text()
-        return content; 
+      const response = await fetch(url, headers);
+      const content = await response.text()
+      return content; 
   } catch (error) {
     console.log(error);
   }
+}
+
+const GetStatsJson = async (channel : string) => {
+    const url = urlStats(channel);
+    const headers = {
+        headers: { 
+            'Content-Type': 'application/json',
+            'x-requested-with': 'XMLHttpRequest' 
+        }        
+    }
+    return await _getFromUrl(url, headers); 
 };
 
 const GetChannelJson = async (channel : string) => {
-  try {
-        const url = urlChannel(channel);
-        const response = await fetch(url);
-        const content = await response.text()
-        return content; 
-  } catch (error) {
-    console.log(error);
-  }
+    const url = urlChannel(channel);
+    return await _getFromUrl(url);
 };
 
 const GetVideoJson = async (videoId : string) => {
-  try {
-        const url = urlVideo(videoId);
-        const response = await fetch(url);
-        const content = await response.text();
-        return content 
-  } catch (error) {
-    console.log(error);
-  }
+    const url = urlVideo(videoId);
+    return await _getFromUrl(url);
 };
 
-export { GetChannelJson, GetVideoJson, GetStatsJson}
+const GetUserJson = async (userId : string) => {
+    const url = urlUser(userId);
+    return await _getFromUrl(url);
+};
+
+export { GetChannelJson, GetVideoJson, GetStatsJson, GetUserJson }
 
 
 

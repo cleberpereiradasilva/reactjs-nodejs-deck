@@ -1,18 +1,18 @@
 import cheerio from 'cheerio'
-import {GetChannelJson, GetVideoJson, GetStatsJson} from "../connector/";
+import {GetChannelJson, GetVideoJson, GetStatsJson, GetUserJson} from "../connector/";
 
 const _liConverterToJson = async body => { 
     const $ = await cheerio.load(body)
     const items = $('li').toArray();
     return Promise.all(await items.map(async item => {
         const videoId = $(item).attr('id').replace("clip","");
-        return await getVideo(videoId);
+        return await GetVideo(videoId);
     }));
 
 };
 
 
-const getVideo = async videoId => {
+const GetVideo = async videoId => {
     const videoBody = await GetVideoJson(videoId);
     const statsJson = await GetStatsJson(videoId);
     const initScript = videoBody.split('<script type="application/ld+json">')[1];
@@ -37,4 +37,18 @@ const GetDataChannel = async channel => {
   const json = await _liConverterToJson(ol.html());
   return json;
 }
-export { GetDataChannel, GetVideoJson as GetVideo };
+
+
+const GetUser = async userId => {
+    const userText = await GetUserJson(userId);
+    const videosText = userText
+        .split('vimeo.config = _extend((vimeo.config || {}),')[1]
+        .split("var __i18nLocale")[0]
+        .trim()
+        .slice(0,-2)
+    const clipsJson = JSON.parse(videosText).profile.initial_state.clips;
+    return clipsJson;
+}
+
+
+export { GetDataChannel, GetVideo, GetUser };
