@@ -34,8 +34,14 @@ const GetDataChannel = async channel => {
   const tabs = await GetChannelJson(channel);
   const $ = cheerio.load(tabs)
   const ol = $('#clips');
-  const json = await _liConverterToJson(ol.html());
-  return json;
+  const videos = await _liConverterToJson(ol.html());
+  const owner = $('.owner').text();
+  const photo = $(".about").find('a img').attr('src').replace('30x30','120x120')
+  return{
+        owner, 
+        photo,
+        videos
+  }
 }
 
 
