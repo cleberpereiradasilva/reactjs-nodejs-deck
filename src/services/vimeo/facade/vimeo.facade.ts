@@ -47,7 +47,8 @@ const GetUser = async userId => {
         .trim()
         .slice(0,-2)
     const clipsJson = JSON.parse(videosText).profile.initial_state.clips;
-    return clipsJson;
+    const userVideosJson = clipsJson.map(clip =>  GetVideo(clip.clip_id))
+    return Promise.all(userVideosJson); 
 }
 
 

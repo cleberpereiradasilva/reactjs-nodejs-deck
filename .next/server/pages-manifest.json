@@ -3,6 +3,5 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/youtube": "pages/youtube.js",
-  "/api/youtube/channel/[channel]": "pages/api/youtube/channel/[channel].js",
-  "/api/youtube/video/[videoId]": "pages/api/youtube/video/[videoId].js"
+  "/api/vimeo/user/[user]": "pages/api/vimeo/user/[user].js"
 }
