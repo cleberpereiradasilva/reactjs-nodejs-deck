@@ -1,5 +1,5 @@
 # reactjs-nodejs-deck
-A system to create youtube videos deck
+[WIP] A system to create youtube videos deck
 
 # Instalar
 ``` 
@@ -21,14 +21,17 @@ Para os canais, youtube, vimeo, twith.tv
 
 # Rodar
 
-Por enquanto estou trabalhando no youtube connector
-
 ```
 $ npm run dev
 
 ```
+# Url Channel Youtube
 
-Open `http://localhost:3000/youtube`
+`http://localhost:3000/api/youtube/channel/spacex`
+
+# Url Video Youtube
+
+`http://localhost:3000/api/youtube/video/IjMESxJdWkg`
 
 # Url Channel Vimeo
 
@@ -37,6 +40,13 @@ Open `http://localhost:3000/youtube`
 # Url User Vimeo
 
 `http://localhost:3000/api/vimeo/user/5453409`
+
+# Next steps
+
+* Split facades
+* Create cache
+* Create twith.tv
+* ... and more.
 
 
 
