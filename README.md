@@ -29,6 +29,8 @@ $ npm run dev
 
 `http://localhost:3000/api/youtube/channel/spacex`
 
+**Need info about the channel**
+
 # Url Video Youtube
 
 `http://localhost:3000/api/youtube/video/IjMESxJdWkg`
@@ -36,6 +38,10 @@ $ npm run dev
 # Url Channel Vimeo
 
 `http://localhost:3000/api/vimeo/channel/1393395`
+
+# Url Video Vimeo
+
+`http://localhost:3000/api/vimeo/video/47483575`
 
 # Url User Vimeo
 
