@@ -1,7 +1,8 @@
 import {GetChannelText, GetVideoText } from "../connector/youtube.connector";
 
-const _tabsConvertToGridRenderer = tabs => tabs && tabs.filter(
-            tab => tab.tabRenderer && tab.tabRenderer.content
+const _jsonToVideoId = json => {    
+    const tabs = json.contents.twoColumnBrowseResultsRenderer.tabs;
+    return tabs && tabs.filter(tab => tab.tabRenderer && tab.tabRenderer.content
             )[0]
             .tabRenderer
             .content
@@ -11,6 +12,7 @@ const _tabsConvertToGridRenderer = tabs => tabs && tabs.filter(
             .contents[0]
             .gridRenderer
             .items;
+}
 
 const GetVideo = async videoId => {
     const videoText = await GetVideoText(videoId);
@@ -42,10 +44,13 @@ const GetDataChannel = async channel => {
   const channelText = await GetChannelText(channel);
   const preJson = channelText.split("window[\"ytInitialData\"] = ")[1].split(";")[0]
   const json = JSON.parse(preJson);        
-  const tabs = json.contents.twoColumnBrowseResultsRenderer.tabs;
-  const items = await _tabsConvertToGridRenderer(tabs);
+  const items = await _jsonToVideoId(json);
   return Promise.all(
-        items.map(async ({ gridVideoRenderer }) => await GetVideo(gridVideoRenderer.videoId))     
+        items.map(
+            async ({ gridVideoRenderer })=> await GetVideo(
+                                                    gridVideoRenderer.videoId
+                                            )
+        )     
   )
 
 }
