@@ -20,15 +20,19 @@ const GetVideo = async videoId => {
                 .slice(0, -1)
     const json = await JSON.parse(preJson);        
     const gridVideoRenderer = json.videoDetails
-    return {
-            "videoId" : gridVideoRenderer.videoId,
-            "thumbnail" : gridVideoRenderer
+    const publishedTimeText = json.microformat
+                                .playerMicroformatRenderer
+                                .publishDate
+    const thumbnail = gridVideoRenderer
                     .thumbnail
                     .thumbnails
-                    .map(image => image.url),
+                    .map(image => image.url)
+    return {
+            "videoId" : gridVideoRenderer.videoId,
+            thumbnail,
+            publishedTimeText,
             "title" : gridVideoRenderer.title,
             "description" :"",
-            "publishedTimeText" : json.microformat.publishDate,
             "viewCountText" : gridVideoRenderer.viewCount
       };
 }
