@@ -1,20 +1,23 @@
 import cheerio from 'cheerio'
-import {GetChannelJson, GetVideoJson, GetStatsJson, GetUserJson} from "../connector/";
+import {GetChannelText, GetVideoText, GetStatsText, GetUserText} from "../connector/";
 
-const _liConverterToJson = async body => { 
-    const $ = await cheerio.load(body)
-    const items = $('li').toArray();
-    return Promise.all(await items.map(async item => {
-        const videoId = $(item).attr('id').replace("clip","");
-        return await GetVideo(videoId);
-    }));
-
+const _textToVideoId = async (body:string) => { 
+    const $ = cheerio.load(body)
+    const clipsElement = $('#clips');
+    const liItems = $(clipsElement).find('li').toArray();
+    return liItems.map(item => $(item).attr('id').replace("clip",""));
 };
 
+const _textToProfile = (body:string) => {
+  const $ = cheerio.load(body);
+  const owner = $('.owner').text();
+  const photo = $(".about").find('a img').attr('src').replace('30x30','120x120')
+  return {owner, photo};
+}
 
-const GetVideo = async videoId => {
-    const videoBody = await GetVideoJson(videoId);
-    const statsJson = await GetStatsJson(videoId);
+const GetVideo = async (videoId:string) => {
+    const videoBody = await GetVideoText(videoId);
+    const statsJson = await GetStatsText(videoId);
     const initScript = videoBody.split('<script type="application/ld+json">')[1];
     const data = initScript.split('</script>')[0].trim();
     const json = JSON.parse(data)[0];
@@ -30,23 +33,24 @@ const GetVideo = async videoId => {
 };
 
 
-const GetDataChannel = async channel => {
-  const tabs = await GetChannelJson(channel);
-  const $ = cheerio.load(tabs)
-  const ol = $('#clips');
-  const videos = await _liConverterToJson(ol.html());
-  const owner = $('.owner').text();
-  const photo = $(".about").find('a img').attr('src').replace('30x30','120x120')
+const GetDataChannel = async (channel:string) => {
+  const channelText = await GetChannelText(channel);
+  const videoListId = await _textToVideoId(channelText);
+  const videos = await Promise.all(
+        await videoListId.map(
+                async (videoId:string) => await GetVideo(videoId)
+        )
+  );
+  const profile = _textToProfile(channelText);
   return{
-        owner, 
-        photo,
+        ...profile,
         videos
   }
 }
 
 
-const GetUser = async userId => {
-    const userText = await GetUserJson(userId);
+const GetUser = async (userId:string) => {
+    const userText = await GetUserText(userId);
 
     const videosText = userText
         .split('vimeo.config = _extend((vimeo.config || {}),')[1]

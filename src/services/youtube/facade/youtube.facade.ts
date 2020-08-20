@@ -14,6 +14,14 @@ const _jsonToVideoId = json => {
             .items;
 }
 
+
+const _jsonToProfile = json => {
+  const owner = json.microformat.microformatDataRenderer.title; 
+  const photo = json.microformat.microformatDataRenderer.thumbnail.thumbnails[0].url;
+  return {owner, photo};
+}
+
+
 const GetVideo = async videoId => {
     const videoText = await GetVideoText(videoId);
     const preJson = videoText.split("window[\"ytInitialPlayerResponse\"] = ")[1]
@@ -40,18 +48,24 @@ const GetVideo = async videoId => {
 }
 
 
-const GetDataChannel = async channel => {
+const GetDataChannel = async (channel:string) => {
   const channelText = await GetChannelText(channel);
   const preJson = channelText.split("window[\"ytInitialData\"] = ")[1].split(";")[0]
   const json = JSON.parse(preJson);        
   const items = await _jsonToVideoId(json);
-  return Promise.all(
+  const videos = await Promise.all(
         items.map(
             async ({ gridVideoRenderer })=> await GetVideo(
                                                     gridVideoRenderer.videoId
                                             )
         )     
   )
+
+  const profile = _jsonToProfile(json);
+  return {
+    ...profile,
+    videos
+  }
 
 }
 export { GetDataChannel, GetVideo };

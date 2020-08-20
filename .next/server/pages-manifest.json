@@ -3,5 +3,5 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/api/youtube/channel/[channel]": "pages/api/youtube/channel/[channel].js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
+  "/api/vimeo/channel/[channel]": "pages/api/vimeo/channel/[channel].js"
 }
