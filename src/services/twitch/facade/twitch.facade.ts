@@ -1,4 +1,12 @@
-import {GetDataChannelText} from "../connector";
+import {GetDataChannelText, GetDataUserText } from "../connector";
+
+const GetDataUser = async (login:string) => {
+    const bodyText = await GetDataUserText(login);
+    const bodyJson = JSON.parse(bodyText);
+    return bodyJson
+
+
+}
 
 const GetDataChannel = async (game:string) => {
     const bodyText = await GetDataChannelText(game);
@@ -19,5 +27,6 @@ const GetDataChannel = async (game:string) => {
     return videos;
 }
 export {
-    GetDataChannel
+    GetDataChannel,
+    GetDataUser
 }

@@ -1,6 +1,8 @@
-import { GetDataChannel } from './twitch.facade';
+import { GetDataChannel, GetDataUser } from './twitch.facade';
 
 
 export {
-    GetDataChannel
+    GetDataChannel,
+    GetDataUser
+
 }

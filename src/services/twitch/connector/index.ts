@@ -1,6 +1,7 @@
-import { GetDataChannelText } from './twitch.connector';
+import { GetDataChannelText, GetDataUserText } from './twitch.connector';
 
 
 export {
-    GetDataChannelText
+    GetDataChannelText,
+    GetDataUserText
 }
