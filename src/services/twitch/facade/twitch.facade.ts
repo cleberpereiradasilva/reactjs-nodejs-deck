@@ -3,13 +3,11 @@ import {GetDataChannelText, GetDataUserText } from "../connector";
 const GetDataUser = async (login:string) => {
     const bodyText = await GetDataUserText(login);
     const bodyJson = JSON.parse(bodyText);
+    const edges = bodyJson[1].data.user.videoShelves.edges;
     return {
         owner : bodyJson[0].data.user.displayName,
         photo: bodyJson[0].data.user.profileImageURL,
-        videos: bodyJson[1].data.
-                user
-                .videoShelves
-                .edges
+        videos:edges
                 .map(edge => edge
                                 .node
                                 .items
