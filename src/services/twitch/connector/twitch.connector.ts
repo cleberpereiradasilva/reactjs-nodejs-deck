@@ -2,41 +2,31 @@
 import {getFromUrl} from "../../shared"
 const urlBase = "https://gql.twitch.tv/gql"
 
-const _getUserBody = ({login, hashStream, hashDrops, hashChannel}) => JSON.stringify([    
-    {
-        "operationName": "StreamMetadata",
+const _getUserBody = ({login, hashShell, hashVideos}) => JSON.stringify(
+[
+     {
+        "operationName": "ChannelShell",
         "variables": {
-            "channelLogin": login
+            "login": login
         },
         "extensions": {
             "persistedQuery": {
                 "version": 1,
-                "sha256Hash": hashStream
+                "sha256Hash": hashShell
             }
         }
     },
-    {
-        "operationName": "Drops_ChannelDrops_User",
+
+     {
+        "operationName": "ChannelVideoShelvesQuery",
         "variables": {
-            "login": login,
-            "isLoggedIn": true
+            "channelLogin": login,
+            "first": 5
         },
         "extensions": {
             "persistedQuery": {
                 "version": 1,
-                "sha256Hash": hashDrops
-            }
-        }
-    },
-    {
-        "operationName": "ChannelRoot_SocialMediaSpace",
-        "variables": {
-            "channelLogin": login
-        },
-        "extensions": {
-            "persistedQuery": {
-                "version": 1,
-                "sha256Hash": hashChannel
+                "sha256Hash": hashVideos
             }
         }
     }
@@ -86,9 +76,8 @@ const _getChannelBody = ({hashChanels, hashBanner, requestID, game}) => JSON.str
 const GetDataUserText = async (login:string) => {
     const payload = {
         login: "gmhikaru", 
-        hashStream : "1c719a40e481453e5c48d9bb585d971b8b372f8ebb105b17076722264dfa5b3e", 
-        hashDrops : "f309b1d517d288074d50d96512059857cc67d8905d1379e414d70f7b981f2618", 
-        hashChannel : "3cc9b2fc1ce60c0d0bd271e795e6c9d0baef0d7cb8a0f130c5311f4d045157da" 
+        hashShell :"2b29e2150fe65ee346e03bd417bbabbd0471a01a84edb7a74e3c6064b0283287",
+        hashVideos : "fb663273aa958ebe2f58d5fcb3aacc112d67ebfd7f414b095c5d1498d21aad92" 
     }
 
 
