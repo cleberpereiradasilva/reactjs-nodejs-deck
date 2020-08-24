@@ -47,11 +47,17 @@ $ npm run dev
 
 `http://localhost:3000/api/vimeo/user/5453409`
 
+# Url Channel Twitch.tv
+
+`http://localhost:3000/api/twitch/channel/chess`
+
+# Url Video Twitch.tv
+
+`http://localhost:3000/api/twitch/user/gmhikaru`
+
 # Next steps
 
-* Split facades
 * Create cache
-* Create twith.tv
 * ... and more.
 
 
