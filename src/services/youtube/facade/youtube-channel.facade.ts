@@ -1,4 +1,5 @@
-import {GetChannelText, GetVideoText } from "../connector/youtube.connector";
+import {GetChannelText} from "../connector/youtube.connector";
+import {GetVideo} from ".";
 
 const _jsonToVideoId = json => {    
     const tabs = json.contents.twoColumnBrowseResultsRenderer.tabs;
@@ -14,39 +15,11 @@ const _jsonToVideoId = json => {
             .items;
 }
 
-
 const _jsonToProfile = json => {
   const owner = json.microformat.microformatDataRenderer.title; 
   const photo = json.microformat.microformatDataRenderer.thumbnail.thumbnails[0].url;
   return {owner, photo};
 }
-
-
-const GetVideo = async videoId => {
-    const videoText = await GetVideoText(videoId);
-    const preJson = videoText.split("window[\"ytInitialPlayerResponse\"] = ")[1]
-                .split("if (window.ytcsi)")[0]
-                .trim()
-                .slice(0, -1)
-    const json = await JSON.parse(preJson);        
-    const gridVideoRenderer = json.videoDetails
-    const publishedTimeText = json.microformat
-                                .playerMicroformatRenderer
-                                .publishDate
-    const thumbnail = gridVideoRenderer
-                    .thumbnail
-                    .thumbnails
-                    .map(image => image.url)
-    return {
-            "videoId" : gridVideoRenderer.videoId,
-            thumbnail,
-            publishedTimeText,
-            "title" : gridVideoRenderer.title,
-            "description" :"",
-            "viewCountText" : gridVideoRenderer.viewCount
-      };
-}
-
 
 const GetDataChannel = async (channel:string) => {
   const channelText = await GetChannelText(channel);
@@ -68,4 +41,4 @@ const GetDataChannel = async (channel:string) => {
   }
 
 }
-export { GetDataChannel, GetVideo };
+export { GetDataChannel };
