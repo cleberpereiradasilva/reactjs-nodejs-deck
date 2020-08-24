@@ -2,6 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/api/youtube/channel/[channel]": "pages/api/youtube/channel/[channel].js",
-  "/api/youtube/video/[videoId]": "pages/api/youtube/video/[videoId].js"
+  "/api/vimeo/channel/[channel]": "pages/api/vimeo/channel/[channel].js",
+  "/api/vimeo/user/[user]": "pages/api/vimeo/user/[user].js",
+  "/api/vimeo/video/[video]": "pages/api/vimeo/video/[video].js"
 }
