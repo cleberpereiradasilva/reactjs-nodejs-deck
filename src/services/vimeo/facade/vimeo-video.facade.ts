@@ -1,5 +1,15 @@
 import {GetVideoText, GetStatsText}  from "../connector/";
 
+const _jsonToString = (json: string) => {
+     try{
+        return JSON.parse(json);
+     }catch{
+        return json;
+     }
+
+}
+
+
 const GetVideo = async (videoId:string) => {
     const videoBody = await GetVideoText(videoId);
     const statsJson = await GetStatsText(videoId);
@@ -12,7 +22,7 @@ const GetVideo = async (videoId:string) => {
           "title" : json.name,
           "description" : json.description,
           "publishedTimeText" : json.uploadDate,
-          "viewCountText" : JSON.parse(statsJson).total_plays.raw,
+          "viewCountText" : _jsonToString(statsJson).total_plays.raw,
     }
     return videoJson;
 };

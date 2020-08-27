@@ -1,7 +1,5 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/api/twitch/channel/[channel]": "pages/api/twitch/channel/[channel].js",
-  "/api/twitch/user/[user]": "pages/api/twitch/user/[user].js"
+  "/_document": "pages/_document.js"
 }

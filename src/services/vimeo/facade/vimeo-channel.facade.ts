@@ -12,7 +12,7 @@ const _textToVideoId = async (body:string) => {
 const _textToProfile = (body:string) => {
   const $ = cheerio.load(body);
   const owner = $('.owner').text();
-  const photo = $(".about").find('a img').attr('src').replace('30x30','120x120')
+  const photo = $(".about").find('a img')?.attr('src')?.replace('30x30','120x120')
   return {owner, photo};
 }
 
