@@ -6,7 +6,8 @@ export default class FetchRequest implements RequestInterface{
     try {
       const response = await fetch(props.url, {
           method: props.method,
-          headers: props.headers
+          headers: props.headers,
+          body: props.body
       });
       const content = await response.text()
       return content; 

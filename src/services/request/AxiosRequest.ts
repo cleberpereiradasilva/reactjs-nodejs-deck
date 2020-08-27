@@ -9,7 +9,8 @@ export default class AxiosRequest implements RequestInterface{
       const response = await axios({
           url: props.url, 
           method: props.method,
-          headers: props.headers
+          headers: props.headers,
+          data: props.body
       });
       return await response.data;
       } catch (error) {
