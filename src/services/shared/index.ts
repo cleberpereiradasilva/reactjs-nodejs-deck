@@ -1,4 +1,4 @@
-import { getFromUrl } from './util'
+import { getFromUrl, stringToJson } from './util'
 
 
-export { getFromUrl }
+export { getFromUrl, stringToJson }

@@ -8,8 +8,15 @@ const getFromUrl = async (url:string, headers = {}) => {
     console.log(error);
   }
 }
+const stringToJson = (json: string) => {
+    try{
+        return JSON.parse(json);
+    }catch{
+        return json;
+    }
+}
 
 
 
 
-export { getFromUrl }
+export { getFromUrl, stringToJson }

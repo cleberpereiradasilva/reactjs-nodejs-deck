@@ -1,5 +1,6 @@
 import { GetUserText} from "../connector/";
 import {GetVideo} from "./vimeo-video.facade";
+import {stringToJson} from "../../shared";
 
 
 const GetUser = async (userId:string) => {
@@ -10,7 +11,7 @@ const GetUser = async (userId:string) => {
         .split("var __i18nLocale")[0]
         .trim()
         .slice(0,-2)
-    const userJson = await JSON.parse(videosText);
+    const userJson = await stringToJson(videosText);
     const clipsJson = userJson.profile.initial_state.clips;
     const userVideosJson = await clipsJson.map(async clip =>  await GetVideo(clip.clip_id))
     const { display_name, url, location, sm_portrait} = userJson.profile.app_config.user;

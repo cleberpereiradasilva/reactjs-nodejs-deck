@@ -1,4 +1,5 @@
 import { GetVideoText } from "../connector/youtube.connector";
+import {stringToJson} from "../../shared";
 
 
 const GetVideo = async videoId => {
@@ -7,7 +8,7 @@ const GetVideo = async videoId => {
                 .split("if (window.ytcsi)")[0]
                 .trim()
                 .slice(0, -1)
-    const json = await JSON.parse(preJson);        
+    const json = await stringToJson(preJson);        
     const gridVideoRenderer = json.videoDetails
     const publishedTimeText = json.microformat
                                 .playerMicroformatRenderer

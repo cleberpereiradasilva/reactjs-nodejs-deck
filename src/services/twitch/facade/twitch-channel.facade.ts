@@ -1,16 +1,9 @@
 import {GetDataChannelText } from "../connector";
+import {stringToJson} from "../../shared";
 
 const GetDataChannel = async (game:string) => {
     const bodyText = await GetDataChannelText(game);
-    const _jsonToString = (json: string) => {
-         try{
-            return JSON.parse(json);
-         }catch{
-            return json;
-         }
-
-    }
-    const bodyJson = _jsonToString(bodyText);
+    const bodyJson = stringToJson(bodyText);
     return {
         "owner":  bodyJson[0].data.game.displayName,
         "photo":  bodyJson[0].data.game.avatarURL,

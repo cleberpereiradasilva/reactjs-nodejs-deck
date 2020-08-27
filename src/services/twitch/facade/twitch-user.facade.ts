@@ -1,8 +1,9 @@
 import {GetDataUserText } from "../connector";
+import {stringToJson} from "../../shared";
 
 const GetDataUser = async (login:string) => {
     const bodyText = await GetDataUserText(login);
-    const bodyJson = JSON.parse(bodyText);
+    const bodyJson = stringToJson(bodyText);
     const edges = bodyJson[1].data.user.videoShelves.edges;
     return {
         owner : bodyJson[0].data.user.displayName,

@@ -1,5 +1,6 @@
 import {GetChannelText} from "../connector/youtube.connector";
 import {GetVideo} from ".";
+import {stringToJson} from "../../shared";
 
 const _jsonToVideoId = json => {    
     const tabs = json.contents.twoColumnBrowseResultsRenderer.tabs;
@@ -24,7 +25,7 @@ const _jsonToProfile = json => {
 const GetDataChannel = async (channel:string) => {
   const channelText = await GetChannelText(channel);
   const preJson = channelText.split("window[\"ytInitialData\"] = ")[1].split(";")[0]
-  const json = JSON.parse(preJson);        
+  const json = stringToJson(preJson);        
   const items = await _jsonToVideoId(json);
   const videos = await Promise.all(
         items.map(
