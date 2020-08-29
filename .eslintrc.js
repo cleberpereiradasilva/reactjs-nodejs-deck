@@ -17,8 +17,10 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
   ],
   rules: {
-      "@typescript-eslint/explicit-module-boundary-types": "off"
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "@typescript-eslint/camelcase" : "off"
   },
+
   overrides: [
     {
       // enable the rule specifically for TypeScript files

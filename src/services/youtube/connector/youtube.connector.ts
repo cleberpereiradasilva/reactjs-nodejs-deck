@@ -20,7 +20,7 @@ const GetChannelText = async (channel: string): Promise<string> => {
   return await Request.execute(payload);
 };
 
-const GetVideoText = async (videoId: string):Promise<string> => {
+const GetVideoText = async (videoId: string): Promise<string> => {
   const payload: RequestPayload = {
     url: urlVideo(videoId),
     method: "GET",
