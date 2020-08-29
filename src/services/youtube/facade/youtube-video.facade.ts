@@ -1,7 +1,7 @@
 import { GetVideoText } from "../connector/youtube.connector";
 import { stringToJson } from "../../shared";
 
-const GetVideo = async (videoId) => {
+const GetVideo = async (videoId: string): Promise<unknown> => {
   const videoText = await GetVideoText(videoId);
   const preJson = videoText
     .split('window["ytInitialPlayerResponse"] = ')[1]

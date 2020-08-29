@@ -19,7 +19,7 @@ const _jsonToProfile = (json) => {
   return { owner, photo };
 };
 
-const GetDataChannel = async (channel: string) => {
+const GetDataChannel = async (channel: string): Promise<unknown> => {
   const channelText = await GetChannelText(channel);
   const preJson = channelText
     .split('window["ytInitialData"] = ')[1]

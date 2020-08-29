@@ -19,7 +19,7 @@ const _textToProfile = (body: string) => {
   return { owner, photo };
 };
 
-const GetDataChannel = async (channel: string) => {
+const GetDataChannel = async (channel: string): Promise<unknown> => {
   const channelText = await GetChannelText(channel);
   const videoListId = await _textToVideoId(channelText);
   const videos = await Promise.all(

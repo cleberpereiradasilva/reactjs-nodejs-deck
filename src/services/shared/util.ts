@@ -1,4 +1,4 @@
-const getFromUrl = async (url: string, headers = {}) => {
+const getFromUrl = async (url: string, headers = {}): Promise<string> => {
   try {
     const response = await fetch(url, headers);
     const content = await response.text();
@@ -7,7 +7,7 @@ const getFromUrl = async (url: string, headers = {}) => {
     console.log(error);
   }
 };
-const stringToJson = (json: string) => {
+const stringToJson = (json: string ): JSON => {
   try {
     return JSON.parse(json);
   } catch {

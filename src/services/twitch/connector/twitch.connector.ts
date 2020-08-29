@@ -4,7 +4,7 @@ import { RequestPayload } from "../../shared/model/WebPayload";
 const urlBase = "https://gql.twitch.tv/gql";
 
 const Request: RequestInterface = new AxiosRequest();
-const _getUserBody = ({ login, hashShell, hashVideos }) =>
+const _getUserBody = ({ login, hashShell, hashVideos }): string =>
   JSON.stringify([
     {
       operationName: "ChannelShell",
@@ -33,7 +33,7 @@ const _getUserBody = ({ login, hashShell, hashVideos }) =>
       },
     },
   ]);
-const _getChannelBody = ({ hashChanels, hashBanner, requestID, game }) =>
+const _getChannelBody = ({ hashChanels, hashBanner, requestID, game }): string =>
   JSON.stringify([
     {
       operationName: "Directory_DirectoryBanner",
@@ -74,7 +74,7 @@ const _getChannelBody = ({ hashChanels, hashBanner, requestID, game }) =>
     },
   ]);
 
-const GetDataUserText = async (login: string) => {
+const GetDataUserText = async (login: string): Promise<string> => {
   const data = {
     login,
     hashShell:
@@ -96,7 +96,7 @@ const GetDataUserText = async (login: string) => {
 
   return Request.execute(payload);
 };
-const GetDataChannelText = async (game: string) => {
+const GetDataChannelText = async (game: string): Promise<string> => {
   const data = {
     hashChanels:
       "5feb6766dc5d70b33ae9a37cda21e1cd7674187cb74f84b4dd3eb69086d9489c",

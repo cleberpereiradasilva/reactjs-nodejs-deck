@@ -1,9 +1,14 @@
 import User from "../model/User";
 
-const users: {};
+const users: unknown = {};
 
-const create = (user: User) => {
-  this.user[user.email] = user;
+const Create = (user: User): void => {
+  users[user.email] = user;
 };
 
-const update = (user: User) => {};
+const Update = (user: User): User => {
+    users[user.email] = user;
+    return user;
+};
+
+export { Create, Update }

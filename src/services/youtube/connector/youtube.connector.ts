@@ -8,7 +8,7 @@ const urlVideo = (videoId: string) =>
   `https://www.youtube.com/watch?v=${videoId}`;
 const Request: RequestInterface = new FetchRequest();
 
-const GetChannelText = async (channel: string) => {
+const GetChannelText = async (channel: string): Promise<string> => {
   const payload: RequestPayload = {
     url: urlChannel(channel),
     method: "GET",
@@ -20,7 +20,7 @@ const GetChannelText = async (channel: string) => {
   return await Request.execute(payload);
 };
 
-const GetVideoText = async (videoId: string) => {
+const GetVideoText = async (videoId: string):Promise<string> => {
   const payload: RequestPayload = {
     url: urlVideo(videoId),
     method: "GET",

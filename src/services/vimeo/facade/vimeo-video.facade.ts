@@ -1,7 +1,7 @@
 import { GetVideoText, GetStatsText } from "../connector/";
 import { stringToJson } from "../../shared";
 
-const GetVideo = async (videoId: string) => {
+const GetVideo = async (videoId: string):Promise<unknown> => {
   const videoBody = await GetVideoText(videoId);
   const statsJson = await GetStatsText(videoId);
   const initScript = videoBody.split('<script type="application/ld+json">')[1];

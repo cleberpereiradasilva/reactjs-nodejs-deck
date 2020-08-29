@@ -1,7 +1,7 @@
 import { GetDataUserText } from "../connector";
 import { stringToJson } from "../../shared";
 
-const GetDataUser = async (login: string) => {
+const GetDataUser = async (login: string):Promise<JSON> => {
   const bodyText = await GetDataUserText(login);
   const bodyJson = stringToJson(bodyText);
   const edges = bodyJson[1].data.user.videoShelves.edges;

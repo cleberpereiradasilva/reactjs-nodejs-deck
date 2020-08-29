@@ -10,7 +10,7 @@ const urlStats = (videoId: string) =>
   `${urlBase}/${videoId}?action=load_stat_counts`;
 const Request: RequestInterface = new FetchRequest();
 
-const GetStatsText = async (channel: string) => {
+const GetStatsText = async (channel: string): Promise<string> => {
   const payload: RequestPayload = {
     url: urlStats(channel),
     method: "GET",
@@ -22,7 +22,7 @@ const GetStatsText = async (channel: string) => {
   return await Request.execute(payload);
 };
 
-const GetChannelText = async (channel: string) => {
+const GetChannelText = async (channel: string): Promise<string> => {
   const payload: RequestPayload = {
     url: urlChannel(channel),
     method: "GET",
@@ -33,7 +33,7 @@ const GetChannelText = async (channel: string) => {
   return await Request.execute(payload);
 };
 
-const GetVideoText = async (videoId: string) => {
+const GetVideoText = async (videoId: string): Promise<string> => {
   const payload: RequestPayload = {
     url: urlVideo(videoId),
     method: "GET",
@@ -44,7 +44,7 @@ const GetVideoText = async (videoId: string) => {
   return await Request.execute(payload);
 };
 
-const GetUserText = async (userId: string) => {
+const GetUserText = async (userId: string): Promise<string> => {
   const payload: RequestPayload = {
     url: urlUser(userId),
     method: "GET",

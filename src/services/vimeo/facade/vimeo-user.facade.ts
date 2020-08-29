@@ -2,7 +2,7 @@ import { GetUserText } from "../connector/";
 import { GetVideo } from "./vimeo-video.facade";
 import { stringToJson } from "../../shared";
 
-const GetUser = async (userId: string) => {
+const GetUser = async (userId: string): Promise<unknown> => {
   const userText = await GetUserText(userId);
 
   const videosText = userText

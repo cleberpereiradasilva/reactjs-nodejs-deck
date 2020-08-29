@@ -1,7 +1,7 @@
 import { GetDataChannelText } from "../connector";
 import { stringToJson } from "../../shared";
 
-const GetDataChannel = async (game: string) => {
+const GetDataChannel = async (game: string): Promise<JSON> => {
   const bodyText = await GetDataChannelText(game);
   const bodyJson = stringToJson(bodyText);
   return {
