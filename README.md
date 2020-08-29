@@ -1,7 +1,6 @@
 # reactjs-nodejs-deck
 [WIP] A system to create youtube videos deck
 
-
 # Instalar
 ``` 
 $ npm install
