@@ -1,0 +1,5 @@
+{
+    "*.ts": [
+      "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
+    ]
+}
