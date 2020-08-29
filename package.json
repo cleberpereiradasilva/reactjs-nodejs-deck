@@ -30,7 +30,14 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.6",
     "git-commit-msg-linter": "^2.4.5",
+    "husky": "^4.2.5",
     "prettier": "^2.1.1",
     "typescript": "^3.9.7"
-  }
+  },
+  "husky": {
+        "hooks": {
+            "pre-commit": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
+        }
+    }
+
 }
