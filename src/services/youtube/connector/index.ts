@@ -1,6 +1,3 @@
-import {GetChannelText, GetVideoText } from './youtube.connector'
+import { GetChannelText, GetVideoText } from "./youtube.connector";
 
-export {
-    GetChannelText,
-    GetVideoText
-};
+export { GetChannelText, GetVideoText };

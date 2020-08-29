@@ -1,6 +1,6 @@
 import Model from "./Model";
 
-export default interface Channel extends Model{
-    name: string,
-    url: string,
+export default interface Channel extends Model {
+  name: string;
+  url: string;
 }

@@ -1,4 +1,4 @@
-import FetchRequest from './FetchRequest'
-import AxiosRequest from './AxiosRequest'
+import FetchRequest from "./FetchRequest";
+import AxiosRequest from "./AxiosRequest";
 
-export { FetchRequest, AxiosRequest }
+export { FetchRequest, AxiosRequest };
