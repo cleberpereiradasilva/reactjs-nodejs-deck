@@ -1,4 +1,3 @@
-import {AxiosRequest} from ".";
 import {RequestPayload} from "../shared/model/WebPayload";
 import RequestInterface from "./RequestInterface";
 
