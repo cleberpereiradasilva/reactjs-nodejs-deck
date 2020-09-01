@@ -1,5 +1,5 @@
-import { GetDataChannel } from "./vimeo-channel.facade";
+import VimeoChannel from "./vimeo-channel.facade";
 import { GetVideo } from "./vimeo-video.facade";
 import { GetUser } from "./vimeo-user.facade";
 
-export { GetDataChannel, GetVideo, GetUser };
+export { VimeoChannel, GetVideo, GetUser };

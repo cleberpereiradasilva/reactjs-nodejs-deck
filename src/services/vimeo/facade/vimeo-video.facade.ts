@@ -1,7 +1,8 @@
 import { GetVideoText, GetStatsText } from "../connector/";
 import { stringToJson } from "../../shared";
+import video from "../../../domain/model/video";
 
-const GetVideo = async (videoId: string): Promise<unknown> => {
+const GetVideo = async (videoId: string): Promise<video> => {
   const videoBody = await GetVideoText(videoId);
   const statsJson = await GetStatsText(videoId);
   const initScript = videoBody.split('<script type="application/ld+json">')[1];
