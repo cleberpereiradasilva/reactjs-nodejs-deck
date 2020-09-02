@@ -1,11 +1,11 @@
 import cheerio from "cheerio";
 import channel from "../../../domain/model/channel";
 import video from "../../../domain/model/video";
-import Channel from "../../../domain/request/Channel";
+import ChannelAdapter from "../../../domain/request/ChannelAdapter";
 import { GetChannelText } from "../connector/";
 import { GetVideo } from "./vimeo-video.facade";
 
-export default class VimeoChannel implements Channel {
+export default class VimeoChannel implements ChannelAdapter {
 
   private _textToVideoId = async (body: string) => {
   const $ = cheerio.load(body);
@@ -31,10 +31,12 @@ export default class VimeoChannel implements Channel {
     await videoListId.map(async (videoId: string) => await GetVideo(videoId))
   );
   const profile = this._textToProfile(channelText);
-  return {
+  const channelData: channel = {
     ...profile,
     videos,
   };
+
+  return channelData;
   }
 }
 
